@@ -1,0 +1,73 @@
+{block content}
+	<h1 n:block="users">Užívatelia</h1>
+	<p><a n:href="add">Pridať užívateľa</a></p>
+	
+	<table class="grid">
+	<tr>
+		<th>Login</th>
+		<th>Password</th>
+		<th>Boss</th>
+		<th>&nbsp;</th>
+	</tr>
+		{foreach $users as $data}
+		<tr>
+			<td>{$data->login}</td>
+			<td>{$data->password}</td>
+			<td>{$data->boss}</td>		
+			<td>
+				<a n:href="edit, $data->login">Edit</a>
+				<a n:href="delete, $data->login">Delete</a>
+			</td>
+		</tr>
+		{/foreach}	
+	</table>
+
+	<h1 n:block="contracts">Zákazky</h1>
+	<p><a n:href="Contracts:add">Pridať zákazku</a></p>
+	<table class="grid">
+	<tr>
+		<th>number</th>
+		<th>user</th>
+		<th>deadline</th>
+		<th>costs</th>
+		<th>profit</th>
+		<th>&nbsp;</th>
+	</tr>
+
+		{foreach $contracts as $contract}
+		<tr>
+			<td>{$contract->number}</td>
+			<td>{$contract->user}</td>
+			<td>{$contract->deadline}</td>
+			<td>{$contract->costs}</td>
+			<td>{$contract->profit}</td>
+			<td>
+				<a n:href="Contracts:edit, $contract->number">Edit</a>
+				<a n:href="Contracts:delete, $contract->number">Delete</a>
+			</td>
+		</tr>
+		{/foreach}
+	</table>
+
+	<h1 n:block="stats">Štatistika</h1>
+	<table class="grid">
+	<tr>
+		<th>user</th>
+		<th>count</th>
+		<th>costs</th>
+		<th>profit</th>
+	</tr>
+
+		{foreach $stats as $stat}
+		<tr>
+			<td>{$stat->user}</td>
+			<td>{$stat->count}</td>
+			<td>{$stat->costs}</td>
+			<td>{$stat->profit}</td>
+		</tr>
+		{/foreach}
+	</table>
+
+ 	<p><a n:href="Sign:out">Odhlásiť sa</a></p>
+
+{/block}
